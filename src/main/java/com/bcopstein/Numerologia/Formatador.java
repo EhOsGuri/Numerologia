@@ -9,8 +9,36 @@ public class Formatador{
     // Se a palavra estiver vazia tambem retorna a excecao
     // Retorna a palavra em maiusculas 
     public String formataPalavra(String palavra){
-        //TODO
-    	return null;
+        try {
+        	
+	    	
+	        char[] letras = palavra.toCharArray();
+	        String palavraFinal = "";
+	        
+	        if(letras.length == 0 || palavra == null) {
+	        	throw new IllegalArgumentException();
+	        }
+	        
+	        for(int i=0; i < letras.length; i++) {
+	        	if(!Character.isLetterOrDigit(letras[i])) {
+	            	throw new IllegalArgumentException();
+	        	}
+	        	
+	        	if(Character.isLetter(letras[i])) {
+	        		letras[i] = Character.toUpperCase(letras[i]);
+	        		palavraFinal = palavraFinal + letras[i];
+	        	}
+	        	else {
+	        		palavraFinal = palavraFinal + letras[i];
+	        	}
+	        }
+        	return palavraFinal;
+        
+        }catch(IllegalArgumentException e) {
+        	return null;
+        }
+ 
+        
     }
 
     // Utiliza o metodo formataPalavra e confere se a primeira letra nao e numerica
