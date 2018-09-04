@@ -43,8 +43,12 @@ public class Formatador{
 
     // Utiliza o metodo formataPalavra e confere se a primeira letra nao e numerica
     public String formataPalavraPlus(String palavra) {
-        //TODO
-    	return null;
+    	char first = palavra.charAt(0);
+    	if(Character.isDigit(first)) {
+    		return null;
+    	}else{
+    		return formataPalavra(palavra);
+    	}
     }
 
     // Formata frases compostas por palavras separadas por espacos em branco e/ou simbolos de pontuacao
@@ -53,7 +57,7 @@ public class Formatador{
     // Qualquer outro simbolo gera IllegalArgumentException
     // Retorna um array de palavras validas 
     public String formataFrase(String frase){
-        //TODO
+        
     	return null;
     }
 }

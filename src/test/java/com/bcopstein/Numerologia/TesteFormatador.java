@@ -3,6 +3,10 @@ package com.bcopstein.Numerologia;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import junitparams.Parameters;
 
 class TesteFormatador {
 	private Formatador f;
@@ -19,6 +23,17 @@ class TesteFormatador {
 		assertEquals(null, f.formataPalavra(str2));
 		
 		
+	}
+	
+	@Test
+	public void formataPalavraPlusTest() {
+		f = new Formatador();
+		String str = "teste1";
+		String str1 = "teste2/";
+		String str2 = "3teste";
+		assertEquals("TESTE1", f.formataPalavraPlus(str));
+		assertEquals(null, f.formataPalavraPlus(str1));
+		assertEquals(null, f.formataPalavraPlus(str2));
 	}
 
 }
