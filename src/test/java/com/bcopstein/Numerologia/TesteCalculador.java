@@ -9,8 +9,6 @@ import junitparams.Parameters;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import junitparams.Parameters;
 
 class TesteCalculador {
