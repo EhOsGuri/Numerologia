@@ -1,5 +1,8 @@
 package com.bcopstein.Numerologia;
 
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Formatador{
@@ -21,17 +24,20 @@ public class Formatador{
 	        
 	        for(int i=0; i < letras.length; i++) {
 	        	if(!Character.isLetterOrDigit(letras[i])) {
-	            	throw new IllegalArgumentException();
+	            	
+	        	}else {		
+		        	if(Character.isLetter(letras[i])) {
+		        		letras[i] = Character.toUpperCase(letras[i]);
+		        		palavraFinal = palavraFinal + letras[i];
+		        	}else {
+		        		palavraFinal = palavraFinal + letras[i];
+		        	}
+		        	
 	        	}
 	        	
-	        	if(Character.isLetter(letras[i])) {
-	        		letras[i] = Character.toUpperCase(letras[i]);
-	        		palavraFinal = palavraFinal + letras[i];
-	        	}
-	        	else {
-	        		palavraFinal = palavraFinal + letras[i];
-	        	}
 	        }
+	        palavraFinal = Normalizer.normalize(palavraFinal, Normalizer.Form.NFD);
+	        palavraFinal = palavraFinal.replaceAll("[^\\p{ASCII}]", "");
         	return palavraFinal;
         
         }catch(IllegalArgumentException e) {
@@ -43,17 +49,41 @@ public class Formatador{
 
     // Utiliza o metodo formataPalavra e confere se a primeira letra nao e numerica
     public String formataPalavraPlus(String palavra) {
-        //TODO
-    	return null;
-    }
+    	String str = formataPalavra(palavra);
+    	
+    	if(str == null || Character.isDigit(str.charAt(0))) {
+    		return null;
+    	}else {
+    		return str;
+    	}
+    	
+}
 
     // Formata frases compostas por palavras separadas por espacos em branco e/ou simbolos de pontuacao
     // Frases vazias geram IllegalArgumentException
     // As palavras da frase devem ser convertidas pelo metodo formataPalavra
     // Qualquer outro simbolo gera IllegalArgumentException
     // Retorna um array de palavras validas 
-    public String formataFrase(String frase){
-        //TODO
-    	return null;
+    public List formataFrase(String frase){
+	   
+		try{
+	    	if(frase.equals("") || frase == null) {
+	    		throw new IllegalArgumentException();
+	    	}
+	        String[] palavras = frase.split(" ");
+	        List<String> l = new ArrayList<>();
+	        
+	        for(int i=0; i < palavras.length; i++) {
+	        	if(formataPalavraPlus(palavras[i]) == null) {
+	        	}else {
+	        		l.add(formataPalavraPlus(palavras[i]));	
+	        	}
+	        	
+	        }
+	        
+	    	return l;
+		}catch(IllegalArgumentException e) {
+    		return null;
+    	}
     }
 }
