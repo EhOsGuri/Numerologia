@@ -19,7 +19,7 @@ class TesteFormatador {
 		String str1 = "teste2,";
 		String str2 = "";
 		assertEquals("TESTE1", f.formataPalavra(str));
-		assertEquals(null, f.formataPalavra(str1));
+		assertEquals("TESTE2", f.formataPalavra(str1));
 		assertEquals(null, f.formataPalavra(str2));
 		
 		
@@ -31,9 +31,11 @@ class TesteFormatador {
 		String str = "teste1";
 		String str1 = "teste2/";
 		String str2 = "3teste";
+		String str3 = "";
 		assertEquals("TESTE1", f.formataPalavraPlus(str));
-		assertEquals(null, f.formataPalavraPlus(str1));
+		assertEquals("TESTE2", f.formataPalavraPlus(str1));
 		assertEquals(null, f.formataPalavraPlus(str2));
+		assertEquals(null, f.formataPalavraPlus(str3));
 	}
 
 }
