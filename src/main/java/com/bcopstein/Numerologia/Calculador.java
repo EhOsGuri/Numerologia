@@ -41,7 +41,8 @@ public class Calculador{
     public static int calculaNumeroDesejosDaAlma(String nomeCompleto){
     	//www.dimension1111.com/numerology-soul-urge-number.html
     	int numero=0;
-    	/*try{	        
+    	/*
+    	 * try{	        
 	    	char atual;
 	    	nomeCompleto=nomeCompleto.replace(" ", "");
 	    	for(int i=0;i<nomeCompleto.length();i++) {
