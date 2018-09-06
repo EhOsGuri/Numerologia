@@ -64,24 +64,27 @@ public class Formatador{
     // As palavras da frase devem ser convertidas pelo metodo formataPalavra
     // Qualquer outro simbolo gera IllegalArgumentException
     // Retorna um array de palavras validas 
-    public List formataFrase(String frase){
+    public String formataFrase(String frase){
 	   
 		try{
 	    	if(frase.equals("") || frase == null) {
 	    		throw new IllegalArgumentException();
 	    	}
 	        String[] palavras = frase.split(" ");
-	        List<String> l = new ArrayList<>();
-	        
+	        String str = "";
 	        for(int i=0; i < palavras.length; i++) {
 	        	if(formataPalavraPlus(palavras[i]) == null) {
+	        		
 	        	}else {
-	        		l.add(formataPalavraPlus(palavras[i]));	
+	        		if(i != 0) {
+		        		str = str + " ";
+		        	}
+	        		str = str + formataPalavraPlus(palavras[i]);
 	        	}
 	        	
 	        }
 	        
-	    	return l;
+	    	return str;
 		}catch(IllegalArgumentException e) {
     		return null;
     	}
