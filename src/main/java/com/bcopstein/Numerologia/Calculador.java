@@ -1,5 +1,7 @@
 package com.bcopstein.Numerologia;
 
+import java.text.ParseException;
+
 // Todos os metodos geram IllegalArgumentException em caso de caracter ilegal
 public class Calculador{
 	//Larissa
@@ -15,7 +17,7 @@ public class Calculador{
         // -----------
     }
 
-	public static int calculaNumeroDaVida(String data){
+	public static int calculaNumeroDaVida(String data) throws ParseException{
     	// http://www.dimension1111.com/numerology-life-path-number.html
     	int aux=reducao.reducaoData(data);
         int numero = 10;

@@ -1,5 +1,8 @@
 package com.bcopstein.Numerologia;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 
 // Todas as palavras so podem conter letras maiusculas nao acentudas e digitos
@@ -102,13 +105,12 @@ public class Redutor{
 
     // Decodifica um caracter segundo a tabela selecionada
     private int decodChar(char c){
-        //TODO
-        return 0;
-    }
-
-    private String reducaoSimples(String str){
-        //TODO
-        return null;
+    	if(Character.isDigit(c)) return Integer.parseInt(String.valueOf(c));
+        if(tipoTab == TipoTabela.PITAGORICA) {
+        	return tabPitagorica(c);
+        }else {
+        	return tabChaldean(c);
+        }
     }
 
     // Define o tipo de tabela da tabela corrente
@@ -118,20 +120,59 @@ public class Redutor{
 
     // Calcula a reducao de palavra usando a tabela corrente
     public int reducaoPalavra(String palavra){
-        //TODO
-        return 0;
+        int val = 0;
+        try {
+        	for(int i=0; i<palavra.length();i++) {
+        		if(Character.isDigit(palavra.charAt(i))) val += Integer.parseInt(String.valueOf(palavra.charAt(i)));
+    			else 
+    				val+=decodChar(palavra.charAt(i));
+        	}
+        }catch(IllegalArgumentException e){
+        	System.out.println("Character invalido");	
+        }
+    	String s = Integer.toString(val);
+    	int a = Integer.parseInt(s.substring(0,1));
+    	int b = Integer.parseInt(s.substring(1,2));
+        return a+b;
     }
 
     // Calcula a reducao de frase usando a tabela corrente
     public int reducaoFrase(String frase){
-        //TODO
-        return 0;
+        int val = 0;
+    	try{
+    		for(int i=0; i<frase.length();i++) {
+    			if(Character.isDigit(frase.charAt(i))) val += Integer.parseInt(String.valueOf(frase.charAt(i)));
+    			else if(!Character.isSpaceChar(frase.charAt(i)))
+    				val+=decodChar(frase.charAt(i));
+        	}
+        }catch(IllegalArgumentException e) {
+        	System.out.println("Character invalido");
+        }
+    	String s = Integer.toString(val);
+    	int a = Integer.parseInt(s.substring(0,1));
+    	int b = Integer.parseInt(s.substring(1,2));
+        return a+b;
     }
 
     // Calcula a reducao de uma data no formato dd/mm/aaaa
     // Se estiver fora do formato lanca IllegalArgumentException
-    public int reducaoData(String data){
-        //TODO
-        return 0;
+    public int reducaoData(String data) throws ParseException{
+        DateFormat df =  new SimpleDateFormat("dd/mm/yyyy");
+    	df.setLenient(false);
+        int val = 0;
+    	try {
+        	df.parse(data);
+        	for(int i=0; i<data.length();i++) {
+        		if(Character.isDigit(data.charAt(i)))
+        			 val += Integer.parseInt(String.valueOf(data.charAt(i)));
+        	}
+        }catch(IllegalArgumentException e) {
+        	System.out.println("Não é uma entrada de data válida");
+        }
+    	String s = Integer.toString(val);
+    	int a = Integer.parseInt(s.substring(0,1));
+    	int b = Integer.parseInt(s.substring(1,2));
+        return a+b;
     }
 }
+
