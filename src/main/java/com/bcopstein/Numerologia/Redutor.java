@@ -121,19 +121,24 @@ public class Redutor{
     // Calcula a reducao de palavra usando a tabela corrente
     public int reducaoPalavra(String palavra){
         int val = 0;
-        try {
-        	for(int i=0; i<palavra.length();i++) {
-        		if(Character.isDigit(palavra.charAt(i))) val += Integer.parseInt(String.valueOf(palavra.charAt(i)));
-    			else 
-    				val+=decodChar(palavra.charAt(i));
+    	try{
+    		for(int i=0; i<palavra.length();i++) {
+    			if(Character.isDigit(palavra.charAt(i))) 
+    				val += Integer.parseInt(String.valueOf(palavra.charAt(i)));
         	}
-        }catch(IllegalArgumentException e){
-        	System.out.println("Character invalido");	
+        }catch(IllegalArgumentException e) {
+        	System.out.println("Character invalido");
         }
-    	String s = Integer.toString(val);
-    	int a = Integer.parseInt(s.substring(0,1));
-    	int b = Integer.parseInt(s.substring(1,2));
-        return a+b;
+    	int aux = 0;
+    		do {
+    			aux = 0;
+    			while(val>0) {
+    				aux = aux + val%10;
+    				val = val/10;
+    			}
+    			val = aux;
+    		}while(val>9);
+        return aux;
     }
 
     // Calcula a reducao de frase usando a tabela corrente
@@ -148,10 +153,16 @@ public class Redutor{
         }catch(IllegalArgumentException e) {
         	System.out.println("Character invalido");
         }
-    	String s = Integer.toString(val);
-    	int a = Integer.parseInt(s.substring(0,1));
-    	int b = Integer.parseInt(s.substring(1,2));
-        return a+b;
+    	int aux = 0;
+    		do {
+    			aux = 0;
+    			while(val>0) {
+    				aux = aux + val%10;
+    				val = val/10;
+    			}
+    			val = aux;
+    		}while(val>9);
+        return aux;
     }
 
     // Calcula a reducao de uma data no formato dd/mm/aaaa
@@ -169,10 +180,16 @@ public class Redutor{
         }catch(IllegalArgumentException e) {
         	System.out.println("Não é uma entrada de data válida");
         }
-    	String s = Integer.toString(val);
-    	int a = Integer.parseInt(s.substring(0,1));
-    	int b = Integer.parseInt(s.substring(1,2));
-        return a+b;
+    	int aux = 0;
+		do {
+			aux = 0;
+			while(val>0) {
+				aux = aux + val%10;
+				val = val/10;
+			}
+			val = aux;
+		}while(val>9);
+		return aux;
     }
 }
 
