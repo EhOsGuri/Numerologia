@@ -5,7 +5,7 @@ import java.text.ParseException;
 // Todos os metodos geram IllegalArgumentException em caso de caracter ilegal
 public class Calculador{
 	//Larissa
-    private Formatador formatador;
+    private static Formatador formatador;
 	private int numero;
     private static Redutor reducao;
 
@@ -17,50 +17,40 @@ public class Calculador{
         // -----------
     }
 
-	public static int calculaNumeroDaVida(String data) throws ParseException{
+	public static int calculaNumeroDaVida(String data)throws ParseException{
     	// http://www.dimension1111.com/numerology-life-path-number.html
-    	int aux=reducao.reducaoData(data);
-        int numero = 10;
-        //aux=Integer.parseInt(data.replaceAll("[^0-9]", ""));
-        //System.out.println(aux);
-        do {
-        	numero=0;
-	        while(aux>0){	
-	        	numero=numero+aux%10;
-	        	aux=aux/10;
-	        }	       
-	       aux=numero;
-        }while(aux>9);
+        int numero = 0;
+        try {
+        	numero=reducao.reducaoData(data);
+        }catch(IllegalArgumentException e) {
+        	System.out.println(e);
+        }
         return numero;
+      
     }
 
-    public int calculaNumeroDestino(String nomeCompleto){
+    public int calculaNumeroDestino(String nomeCompleto)throws ParseException{
     	// http://www.dimension1111.com/numerology-destiny-number.html   	
-        int numero = 0;        
-        return numero;
+    	 int numero = 0;
+         try {
+         	nomeCompleto=formatador.formataFrase(nomeCompleto);
+         	numero=reducao.reducaoFrase(nomeCompleto);
+         	
+         }catch(IllegalArgumentException e) {
+         	System.out.println(e);
+         }
+         return numero;
     }
     
-    public static int calculaNumeroDesejosDaAlma(String nomeCompleto){
+    public static int calculaNumeroDesejosDaAlma(String nomeCompleto)throws ParseException{
     	//www.dimension1111.com/numerology-soul-urge-number.html
-    	int numero=0;
-    	/*
-    	 * try{	        
-	    	char atual;
-	    	nomeCompleto=nomeCompleto.replace(" ", "");
-	    	for(int i=0;i<nomeCompleto.length();i++) {
-	    		atual=nomeCompleto.charAt(i);
-	    		if(atual=='A' || atual=='E' || atual=='I' || atual=='O' || atual=='U' ){
-	    			numero=numero+reducao.reducaoPalavra(atual + "");
-	    		}
-	    	}
-    	}catch(Exception e) {
-    		System.out.println(e);
-    	}*/
-    	return numero;
-    }
-    
-    public static void main(String args[]) {      
-      //System.out.println(calculaNumeroDaVida("12/07/1997"));
-    	System.out.println(calculaNumeroDesejosDaAlma("LARISSA"));
+    	 int numero = 0;
+         try {
+        	 nomeCompleto=formatador.formataFrase(nomeCompleto);
+        	 numero=reducao.reducaoFrase(nomeCompleto);
+         }catch(IllegalArgumentException e) {
+         	System.out.println(e);
+         }
+         return numero;
     }
 }
