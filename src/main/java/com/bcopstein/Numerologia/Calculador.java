@@ -47,7 +47,7 @@ public class Calculador{
     	 int numero = 0;
          try {
         	 nomeCompleto=formatador.formataFrase(nomeCompleto);
-        	 numero=reducao.reducaoFrase(nomeCompleto);
+        	// numero=reducao.reducaoFrase(nomeCompleto);
          }catch(IllegalArgumentException e) {
          	System.out.println(e);
          }
