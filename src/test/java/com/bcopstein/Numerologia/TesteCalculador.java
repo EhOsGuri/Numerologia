@@ -36,7 +36,7 @@ class TesteCalculador {
 	
 	
 	@ParameterizedTest
-	@CsvSource({"Larissa SM, 2"})
+	@CsvSource({"Larissa SM, 3"})
 	void testeNumeroDesejosDaAlma(String resp,int esperado) throws ParseException {
 		r = new Redutor();
 		f = new Formatador();
