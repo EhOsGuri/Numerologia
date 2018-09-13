@@ -123,8 +123,8 @@ public class Redutor{
         int val = 0;
     	try{
     		for(int i=0; i<palavra.length();i++) {
-    			if(Character.isDigit(palavra.charAt(i))) 
-    				val += Integer.parseInt(String.valueOf(palavra.charAt(i)));
+    			if(Character.isDigit(palavra.charAt(i))) val += Integer.parseInt(String.valueOf(palavra.charAt(i)));
+    			else val+=decodChar(palavra.charAt(i));
         	}
         }catch(IllegalArgumentException e) {
         	System.out.println("Character invalido");
