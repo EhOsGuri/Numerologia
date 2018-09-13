@@ -17,11 +17,11 @@ public class Calculador{
         // -----------
     }
 
-	public static int calculaNumeroDaVida(String data)throws ParseException{
+	public int calculaNumeroDaVida(String data)throws ParseException{
     	// http://www.dimension1111.com/numerology-life-path-number.html
         int numero = 0;
         try {
-        	numero=reducao.reducaoData(data);
+        	numero=reducao.reducaoPalavra(formatador.formataPalavra(data));
         }catch(IllegalArgumentException e) {
         	System.out.println(e);
         }
