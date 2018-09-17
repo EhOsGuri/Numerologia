@@ -104,7 +104,7 @@ public class Redutor{
     }
 
     // Decodifica um caracter segundo a tabela selecionada
-    private int decodChar(char c){
+    public int decodChar(char c){
     	if(Character.isDigit(c)) return Integer.parseInt(String.valueOf(c));
         if(tipoTab == TipoTabela.PITAGORICA) {
         	return tabPitagorica(c);
